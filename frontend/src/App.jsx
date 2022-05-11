@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios"
 import { useState,useEffect } from "react";
 import { Route, useNavigate } from "react-router-dom";
-import { ReactSession } from 'react-client-session';
+import Cookies from 'js-cookie'
 
 export default () => {
   const [uname, setUname] = useState('')
@@ -15,9 +15,8 @@ export default () => {
   useEffect(() => {
     console.log(login)
     if(login.status){
-      ReactSession.setStoreType("sessionStorage");
-      ReactSession.set("name", login.name);    
-      ReactSession.set("id", login.id)
+      Cookies.set('user_name', login.name)
+      Cookies.set('user_id', login.id)
       navigate('/home')
     } else {
       // setMsg(login.msg)
