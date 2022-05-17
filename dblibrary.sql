@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 03:29 AM
+-- Generation Time: May 17, 2022 at 05:45 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -87,7 +87,8 @@ INSERT INTO `tuser` (`id`, `name`, `username`, `password`, `id_role`) VALUES
 (2, 'James Smith', 'jsmith', 'pbkdf2:sha256:260000$30ELyBirRNo', 2),
 (3, 'Ella Brown', 'ebrown', 'pbkdf2:sha256:260000$VtD6V0h16gy', 2),
 (4, 'Shia Wren', 'swren', 'pbkdf2:sha256:260000$tWY43ZDMrRs', 2),
-(5, 'Sorelle Winter', 'sWinter', 'pbkdf2:sha256:260000$Txy9dZP3QUP', 2);
+(5, 'Sorelle Winter', 'sWinter', 'pbkdf2:sha256:260000$Txy9dZP3QUP', 2),
+(6, 'Monet Pont', 'mpont', 'pbkdf2:sha256:260000$OSsCPphzqB2', 2);
 
 --
 -- Indexes for dumped tables
@@ -132,7 +133,7 @@ ALTER TABLE `trole`
 -- AUTO_INCREMENT for table `tuser`
 --
 ALTER TABLE `tuser`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
