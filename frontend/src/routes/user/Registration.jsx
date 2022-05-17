@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import service from "../../services/service";
 
 export default () => {
-    const url = 'http://127.0.0.1:5000/'
     const [uname, setUname] = useState('')
     const [name, setName] = useState('')
     const [pass, setPass] = useState('')
@@ -20,12 +20,13 @@ export default () => {
 
     const submit = (evt) => {
         evt.preventDefault()
-        axios.post(url+'register',{
+        service.postData('/register',{
             "username":uname,
             "password":pass,
-            "name":name
+            "name":name,
+            "role":2
         }).then(res => {
-            setData(res.data)
+            setData(res)
         })
     }
 

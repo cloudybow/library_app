@@ -38,6 +38,24 @@ def login():
         }
         return response
 
+#USER ROLE#
+@app.route('/getRole',methods=["POST"])
+def getRole():
+    name = request.json.get("name",None)
+    print(name)
+    res = User.query.filter_by(name = name).first()
+    role = Role.query.filter_by(id = res.id_role).first()
+
+    if role.role == 'User':
+        return {
+            "error":True,
+            "msg":"Access Denied!"
+        }, 401
+    else:
+        return {
+            "role":role.role
+        }
+
 #USER REGISTER#
 @app.route('/register',methods=["POST"])
 def register():
@@ -49,7 +67,8 @@ def register():
     name = request.json.get("name",None)
     username = request.json.get("username",None)
     password = request.json.get("password",None)
-    user = User(id,name,username,password)
+    role = request.json.get("role",None)
+    user = User(id,name,username,password,role)
     db.session.add(user)
     db.session.commit()
 

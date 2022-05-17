@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import service from "../services/service";
+import { useNavigate,Link } from "react-router-dom";
 
 export default (props) => {
-    const datas = props.data.data
+    const [datas, setDatas] = useState([])
     const search = props.search
-    console.log(datas)
-    console.log(search)
-    console.log(
-        datas?datas.filter(data => data.judul.toLowerCase().includes('pemrograman')):''
-    )
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        service.getData('allBook')
+        .then(res => {
+            setDatas(res.data)
+        })
+    },[])
+
+    const goDetail = (data) => {
+        navigate(`/book_detail/${data.id}`, {state:data})
+        console.log(data)
+    }
+
     const newData = datas ? datas.filter(data => data.judul.toLowerCase().includes(search.toLowerCase())):[]
     return(
         <div>
@@ -23,7 +34,7 @@ export default (props) => {
                 <tbody>
                     {newData? newData.map((data,i)=>{
                         return(
-                            <tr key={i}>
+                            <tr key={i} onClick={()=>goDetail(data)}>
                                 <td>{data.judul}</td>
                                 <td>{data.penulis}</td>
                                 <td>{data.penerbit}</td>

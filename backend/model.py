@@ -27,14 +27,14 @@ class User(db.Model):
     name = db.Column(db.String(30))
     username = db.Column(db.String(12), unique=True)
     password = db.Column(db.String(32))
-    id_role = db.Column(db.Integer, ForeignKey('trole.id_role'))
+    id_role = db.Column(db.Integer, ForeignKey('trole.id'))
 
     def __init__(self, id, name, username, password, id_role):
         self.id = id
         self.name = name
         self.username = username
         self.password = generate_password_hash(password)
-        self.id_role = role
+        self.id_role = id_role
 
     def check_password(self, password):
         return check_password_hash(self.password, password)   
